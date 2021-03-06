@@ -21,35 +21,34 @@ async function crawl(searchEngineURL, query){
     await page.click('label[for=sb_form_go]');
     
     //bing: close edge ad popup
-    await page.waitForSelector('span[id=bnp_hfly_cta2]');
+    //TODO use inner text with "Maybe Later"
+    await page.waitForSelector('span[id=bnp_hfly_cta2]'); // this changes -> A/B testing from bing
     await page.click('span[id=bnp_hfly_cta2]');
 
-    //TODO autogenerate file name
-    await page.screenshot({ path: `SE_bing_1_2021400009.png`, fullPage: true }); 
+    await page.screenshot({ path: `SE_BING_1_2021400009(page1).png`, fullPage: true }); 
     // TODO make file out of source code without multimedia
     const html = await page.content();
 
-    // get all results
-    var results = await page.$$eval('.b_algo h2 a', results => results.map((result,index) => ({
+    //get all entries from first two pages
+    const results1 = await page.$$eval('.b_algo h2 a', results => results.map((result,index) => ({
         rank: index + 1,
         title: result.textContent,
         url: result.href
     })))
-    // given that first page always has 9 results
-    if (results.length < 10) {
-        await page.click('.b_pag li:last-child a');
-        await page.waitForSelector('.b_algo');
-        const newEntry = await page.$('.b_algo h2 a');
-        results.push({
-            rank: 10,
-            title: newEntry.textContent,
-            url: newEntry.href
-        });
-    }
-    await page.screenshot({ path: `SE_bing_1_2021400009(2).png`, fullPage: true }); 
-    console.log(results);
 
-    //TODO create file with search results
+    await page.click('.b_pag li:last-child a');
+    await page.waitForSelector('.b_algo h2 a');
+
+    const results2 = await page.$$eval('.b_algo h2 a', (results, results1) => results.map((result,index) => ({
+        rank: index + 1 + results1.length,
+        title: result.textContent,
+        url: result.href
+    })), results1);
+    const results = results1.concat(results2).slice(0,10);
+    await page.screenshot({ path: `SE_BING_1_2021400009(page2).png`, fullPage: true }); 
+
+
+    //write results to file
     var fs = require('fs');
     const jsonString = JSON.stringify(results);
     fs.writeFile('SE_BING_1_2021400009.json', jsonString, 'utf8', function (err) {
