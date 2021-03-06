@@ -1,0 +1,12 @@
+{
+    "query1": {
+        "queryNum": 1,
+        "query": "international students return to china when",
+        "description": "I want to know about news regarding the travel ban for students to China"
+    },
+    "query2": {
+        "queryNum": 2,
+        "query": "germany vaccination schedule",
+        "description": "I want to know when I am able to get vaccinated"
+    }
+}
