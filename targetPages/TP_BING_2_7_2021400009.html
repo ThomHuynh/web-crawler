@@ -1,0 +1,429 @@
+<!DOCTYPE html><html style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths"><head>
+	<title>Vaccine Scheduler | ECDC</title>
+	<meta name="description" content="Giving insight in the vaccine schedules in all countries of the EU, provided by the European Centre for Disease Prevention and Control (ECDC).">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/Content/bootstrap.css" rel="stylesheet">
+<link href="/Content/site.css" rel="stylesheet">
+
+	
+	<script src="/Scripts/modernizr-2.8.3.js"></script>
+
+	<script type="text/javascript" id="cookieConsentKitConfiguration">
+		window.cookieConsentKitBannerStyle = 'defaultStyle';
+		window.cookieConsentKitDomain = '.ecdc.europa.eu';
+		window.cookieConsentKitDisplayPrompt = 'true';
+		window.cookieConsentKitSupportMultilingual = 'false';
+		window.googleAnalyticsTrackingId = 'UA-40404841-1';
+	</script>
+	<script type="text/javascript" id="cookieConsentKitConfigurationFilePath" src="https://cdn.ecdc.europa.eu/cookieConsentKit/configuration-2.0.min.js"></script>
+	<script type="text/javascript" id="cookieConsentKitFilePath" src="https://cdn.ecdc.europa.eu/cookieConsentKit/cookieConsentKit-2.0.min.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.ecdc.europa.eu/cookieConsentKit/banner-2.0.min.css"></head>
+<body><div id="cckBanner" class="cckBannerVisible" style="display: block;"><div class="cckButton" id="cckButton" onclick="javascript:cookieConsentKit.manageCookies();" style="right: 0px;">Manage cookies</div><div class="cckBannerInner"><h2> Cookies</h2> <p class="cckInform">We use cookies to collect statistics on how the visitors navigate the website and to improve the user experience. Find out more on <a id="cookie-notice" target="_blank" href="https://ecdc.europa.eu/en/cookie-policy">how we use cookies and how you can change your settings</a>.</p><div class="cckActions" id="cckAcceptCookies" onclick="javascript:cookieConsentKit.acceptCookies()">I accept cookies</div><div class="cckActions" id="cckRefuseCookies" onclick="javascript:cookieConsentKit.refuseCookies()">I don't accept cookies</div><div class="cckActions" id="cckPostponeCookies" onclick="javascript:cookieConsentKit.postponeCookies()">Remind me later</div></div></div>
+	<div class="body-content-outer">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="ecdcNetworkBarTitle"><span>Other sites:</span></li>
+						<li><a href="https://ecdc.europa.eu/en/home" target="_blank" class="navbar-brand">ECDC</a></li>
+						<li><a href="http://antibiotic.ecdc.europa.eu/" target="_blank" class="navbar-brand">European Antibiotic Awareness Day</a></li>
+						<li><a href="http://www.escaide.eu/" target="_blank" class="navbar-brand">ESCAIDE - Scientific conference</a></li>
+						<li><a href="http://www.eurosurveillance.org/" target="_blank" class="navbar-brand">Eurosurveillance journal</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<header id="navbar" role="banner">
+			<section class="section section--navbar-header">
+				<div class="container">
+					<div class="section__inner">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="media">
+									<div class="media-left">
+										<a href="/" title="Home" rel="home">
+											<img class="logo media-object" src="/Images/logo-ecdc.png" alt="European Centre for Disease Prevention and Control">
+										</a>
+									</div>
+									<div class="media-body media-middle">
+										<h3 class="header-title media-heading">
+											Vaccine Scheduler
+										</h3>
+										<h4 class="header-subtitle media-heading">
+											<span></span>
+										</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</header>
+
+		<div class="body-content">
+			
+<div class="container">
+	<div class="vaccineIntro row">
+		<div class="col-sm-12">
+			<span>Vaccine schedules in all countries  of the European Union</span>
+		</div>
+	</div>
+</div>
+
+<div class="vaccineQuickSearch-outer row">
+	<div class="container">
+		<div class="vaccineQuickSearch">
+			<form action="/Scheduler/ByCountry" method="get" novalidate="novalidate">	<div class="form-group col-sm-2 quickSearchTitle">
+		<span>Quick search</span>
+	</div>
+	<div class="form-group col-sm-4 quickSearchByCountry">
+		<label class="control-label col-sm-4" for="SelectedCountryId">Country</label>
+		<div class="col-sm-8">
+			<select class="form-control" data-val="true" data-val-number="The field Country must be a number." data-val-range="This is a required field." data-val-range-max="2147483647" data-val-range-min="1" data-val-required="The Country field is required." id="SelectedCountryId" name="SelectedCountryId" uniquename="ByCountrySearchSelectCountryDropDownBox"><option selected="selected" value="0">-- Select a country --</option>
+<option value="18">Austria</option>
+<option value="269">Belgium  </option>
+<option value="35">Bulgaria</option>
+<option value="271">Croatia</option>
+<option value="46">Cyprus</option>
+<option value="201">Czech Republic</option>
+<option value="58">Denmark</option>
+<option value="69">Estonia</option>
+<option value="75">Finland</option>
+<option value="76">France</option>
+<option value="6">Germany</option>
+<option value="82">Greece</option>
+<option value="95">Hungary</option>
+<option value="101">Iceland</option>
+<option value="100">Ireland</option>
+<option value="103">Italy</option>
+<option value="115">Latvia</option>
+<option value="119">Liechtenstein</option>
+<option value="120">Lithuania</option>
+<option value="121">Luxembourg</option>
+<option value="130">Malta</option>
+<option value="163">Netherlands</option>
+<option value="152">Norway</option>
+<option value="166">Poland</option>
+<option value="167">Portugal</option>
+<option value="170">Romania</option>
+<option value="187">Slovakia</option>
+<option value="188">Slovenia</option>
+<option value="68">Spain</option>
+<option value="192">Sweden</option>
+</select>
+			<span class="field-validation-valid text-danger" data-valmsg-for="SelectedCountryId" data-valmsg-replace="true" uniquename="ByCountrySearchSelectCountryValidationLabel"></span>
+		</div>
+	</div>
+	<div class="form-group col-sm-4 quickSearchByAge">
+		<label class="control-label col-sm-4" for="Age_group">Age group</label>
+		<div class="col-sm-8">
+			<table>
+				<tbody><tr>
+					<td><input checked="checked" class="" data-val="true" data-val-required="The Child field is required." id="IncludeChildAgeGroup" name="IncludeChildAgeGroup" type="checkbox" uniquename="ByCountrySearchIncludeChildAgeCheckBox" value="true"><input name="IncludeChildAgeGroup" type="hidden" value="false"></td>
+					<td><label class="control-label col-sm-4" for="IncludeChildAgeGroup">Child</label></td>
+					<td><input checked="checked" class="" data-val="true" data-val-required="The Adult field is required." id="IncludeAdultAgeGroup" name="IncludeAdultAgeGroup" type="checkbox" uniquename="ByCountrySearchIncludeAdultAgeCheckBox" value="true"><input name="IncludeAdultAgeGroup" type="hidden" value="false"></td>
+					<td><label class="control-label col-sm-4" for="IncludeAdultAgeGroup">Adult</label></td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>
+	<div class="form-group col-sm-2 quickSearchSubmit">
+		<div class="quickSearchSubmitInner">
+			<span>
+				<input uniquename="ByCountrySearchSubmitButton" type="submit" value="View schedule" class="btn btn-default">
+			</span>
+		</div>
+	</div>
+</form>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="vaccineAdvancedSearch">
+		<div class="row">
+			<div class="col-sm-12">
+				<h2>Advanced search</h2>
+			</div>
+		</div>
+		<div class="row">
+				<div class="col-sm-6">
+					<div class="advancedSearchForm-outer">
+						<div class="innerVaccineSchedulerComponent">
+
+	<h3>Immunisation schedules by target disease</h3>
+<form action="/Scheduler/ByDisease" method="get" novalidate="novalidate">		<div class="form-group col-xs-12">
+			<label class="control-label col-sm-4" for="SelectedDiseaseId">Disease</label>
+			<div class="col-xs-8">
+				<select class="form-control" data-val="true" data-val-number="The field Disease must be a number." data-val-range="This is a required field." data-val-range-max="2147483647" data-val-range-min="1" data-val-required="The Disease field is required." id="SelectedDiseaseId" name="SelectedDiseaseId" uniquename="ByDiseaseSearchDiseaseDropDownBox"><option selected="selected" value="0">-- Select a disease --</option>
+<option value="36">cholera</option>
+<option value="52">Coronavirus disease (COVID-19)</option>
+<option value="1">diphtheria</option>
+<option value="5">Haemophilus influenzae type b infection</option>
+<option value="16">hepatitis A</option>
+<option value="6">hepatitis B</option>
+<option value="51">herpes zoster</option>
+<option value="38">human papillomavirus infection</option>
+<option value="15">influenza</option>
+<option value="50">influenza A (H5N1)</option>
+<option value="35">influenza A(H1N1)2009</option>
+<option value="28">japanese encephalitis</option>
+<option value="8">measles</option>
+<option value="48">meningococcal disease</option>
+<option value="9">mumps</option>
+<option value="3">pertussis</option>
+<option value="25">pneumococcal disease</option>
+<option value="4">poliomyelitis</option>
+<option value="30">rabies</option>
+<option value="32">rotavirus infection</option>
+<option value="10">rubella</option>
+<option value="29">smallpox</option>
+<option value="2">tetanus</option>
+<option value="27">tick-borne encephalitis</option>
+<option value="14">tuberculosis</option>
+<option value="18">typhoid fever</option>
+<option value="11">varicella</option>
+<option value="17">yellow fever</option>
+</select>
+				<span class="field-validation-valid text-danger" data-valmsg-for="SelectedDiseaseId" data-valmsg-replace="true" uniquename="ByDiseaseSearchDiseaseValidationLabel"></span>
+			</div>
+		</div>
+		<div class="form-group col-xs-12">
+			<label class="control-label col-sm-4" for="SelectedCountryIdByDisease">In</label>
+			<div class="col-xs-8">
+				<select class="form-control" data-val="true" data-val-number="The field In must be a number." data-val-required="The In field is required." id="SelectedCountryIdByDisease" name="SelectedCountryIdByDisease" uniquename="ByDiseaseSearchCountryDropDownBox"><option value="-1">All EU countries</option>
+<option value="18">Austria</option>
+<option value="269">Belgium  </option>
+<option value="35">Bulgaria</option>
+<option value="271">Croatia</option>
+<option value="46">Cyprus</option>
+<option value="201">Czech Republic</option>
+<option value="58">Denmark</option>
+<option value="69">Estonia</option>
+<option value="75">Finland</option>
+<option value="76">France</option>
+<option value="6">Germany</option>
+<option value="82">Greece</option>
+<option value="95">Hungary</option>
+<option value="101">Iceland</option>
+<option value="100">Ireland</option>
+<option value="103">Italy</option>
+<option value="115">Latvia</option>
+<option value="119">Liechtenstein</option>
+<option value="120">Lithuania</option>
+<option value="121">Luxembourg</option>
+<option value="130">Malta</option>
+<option value="163">Netherlands</option>
+<option value="152">Norway</option>
+<option value="166">Poland</option>
+<option value="167">Portugal</option>
+<option value="170">Romania</option>
+<option value="187">Slovakia</option>
+<option value="188">Slovenia</option>
+<option value="68">Spain</option>
+<option value="192">Sweden</option>
+</select>
+				<span class="field-validation-valid text-danger" data-valmsg-for="SelectedCountryIdByDisease" data-valmsg-replace="true" uniquename="ByDiseaseSearchCountryValidationLabel"></span>
+			</div>
+		</div>
+		<div class="form-group col-xs-12 advancedSearchSubmitCompare">
+			<div class="advancedSearchSubmitCompareInner">
+				<span>
+					<input uniquename="ByDiseaseSearchSubmitButton" type="submit" value="View schedule" class="btn btn-default">
+				</span>
+			</div>
+		</div>
+</form>
+</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="advancedSearchForm-outer">
+						<div class="innerVaccineSchedulerComponent">
+
+	<h3>Compare national immunisation schedules</h3>
+<form action="/Scheduler/ByCountries" method="get" novalidate="novalidate">		<div class="form-group col-xs-12">
+			<label class="control-label col-sm-4" for="SelectedCountry1Id">Compare</label>
+			<div class="col-xs-8">
+				<select class="form-control" data-val="true" data-val-number="The field Compare must be a number." data-val-range="This is a required field." data-val-range-max="2147483647" data-val-range-min="1" data-val-required="The Compare field is required." id="SelectedCountry1Id" name="SelectedCountry1Id" uniquename="ByCountriesSearchCountry1DropDownBox"><option selected="selected" value="0">-- Select a country --</option>
+<option value="18">Austria</option>
+<option value="269">Belgium  </option>
+<option value="35">Bulgaria</option>
+<option value="271">Croatia</option>
+<option value="46">Cyprus</option>
+<option value="201">Czech Republic</option>
+<option value="58">Denmark</option>
+<option value="69">Estonia</option>
+<option value="75">Finland</option>
+<option value="76">France</option>
+<option value="6">Germany</option>
+<option value="82">Greece</option>
+<option value="95">Hungary</option>
+<option value="101">Iceland</option>
+<option value="100">Ireland</option>
+<option value="103">Italy</option>
+<option value="115">Latvia</option>
+<option value="119">Liechtenstein</option>
+<option value="120">Lithuania</option>
+<option value="121">Luxembourg</option>
+<option value="130">Malta</option>
+<option value="163">Netherlands</option>
+<option value="152">Norway</option>
+<option value="166">Poland</option>
+<option value="167">Portugal</option>
+<option value="170">Romania</option>
+<option value="187">Slovakia</option>
+<option value="188">Slovenia</option>
+<option value="68">Spain</option>
+<option value="192">Sweden</option>
+</select>
+				<span class="field-validation-valid text-danger" data-valmsg-for="SelectedCountry1Id" data-valmsg-replace="true" uniquename="ByCountriesSearchCountry1ValidationLabel"></span>
+			</div>
+		</div>
+		<div class="form-group col-xs-12">
+			<label class="control-label col-sm-4" for="SelectedCountry2Id">With</label>
+			<div class="col-xs-8">
+				<select class="form-control" data-val="true" data-val-number="The field With must be a number." data-val-range="This is a required field." data-val-range-max="2147483647" data-val-range-min="1" data-val-required="The With field is required." id="SelectedCountry2Id" name="SelectedCountry2Id" uniquename="ByCountriesSearchCountry2DropDownBox"><option selected="selected" value="0">-- Select a country --</option>
+<option value="18">Austria</option>
+<option value="269">Belgium  </option>
+<option value="35">Bulgaria</option>
+<option value="271">Croatia</option>
+<option value="46">Cyprus</option>
+<option value="201">Czech Republic</option>
+<option value="58">Denmark</option>
+<option value="69">Estonia</option>
+<option value="75">Finland</option>
+<option value="76">France</option>
+<option value="6">Germany</option>
+<option value="82">Greece</option>
+<option value="95">Hungary</option>
+<option value="101">Iceland</option>
+<option value="100">Ireland</option>
+<option value="103">Italy</option>
+<option value="115">Latvia</option>
+<option value="119">Liechtenstein</option>
+<option value="120">Lithuania</option>
+<option value="121">Luxembourg</option>
+<option value="130">Malta</option>
+<option value="163">Netherlands</option>
+<option value="152">Norway</option>
+<option value="166">Poland</option>
+<option value="167">Portugal</option>
+<option value="170">Romania</option>
+<option value="187">Slovakia</option>
+<option value="188">Slovenia</option>
+<option value="68">Spain</option>
+<option value="192">Sweden</option>
+</select>
+				<span class="field-validation-valid text-danger" data-valmsg-for="SelectedCountry2Id" data-valmsg-replace="true" uniquename="ByCountriesSearchCountry2ValidationLabel"></span>
+			</div>
+		</div>
+		<div class="form-group col-xs-12">
+			<label class="control-label col-xs-4" for="Age_group">Age group</label>
+			<div class="col-xs-8">
+				<table>
+					<tbody><tr>
+						<td><input checked="checked" class="" data-val="true" data-val-required="The Child field is required." id="IncludeChildAgeGroup" name="IncludeChildAgeGroup" type="checkbox" uniquename="ByCountriesSearchIncludeChildAgeCheckBox" value="true"><input name="IncludeChildAgeGroup" type="hidden" value="false"></td>
+						<td><label for="IncludeChildAgeGroup">Child</label></td>
+						<td><input checked="checked" class="" data-val="true" data-val-required="The Adult field is required." id="IncludeAdultAgeGroup" name="IncludeAdultAgeGroup" type="checkbox" uniquename="ByCountriesSearchIncludeAdultAgeCheckBox" value="true"><input name="IncludeAdultAgeGroup" type="hidden" value="false"></td>
+						<td><label for="IncludeAdultAgeGroup">Adult</label></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+		<div class="form-group col-xs-12 advancedSearchSubmitCompare">
+			<div class="advancedSearchSubmitCompareInner">
+				<span>
+					<input uniquename="ByCountriesSearchSubmitButton" type="submit" value="View schedule" class="btn btn-default">
+				</span>
+			</div>
+		</div>
+</form></div>
+					</div>
+				</div>
+		</div>
+	</div>
+
+	<div class="vaccineBottomPanel">
+		<div class="row">
+			<div class="col-sm-12">
+				<p>&nbsp;Please inform ECDC of incorrect or missing information at:&nbsp;<a href="mailto:vpd@ecdc.europa.eu" style="background-color: rgb(255, 255, 255);">vpd@ecdc.europa.eu</a>. This platform was developed by ECDC with&nbsp;<a href="https://www.mesvaccins.net/" target="_blank" style="background-color: rgb(255, 255, 255);">MesVaccins.net</a>.</p>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+			<div class="push"></div>
+		</div>
+	</div>
+	<div class="navbar navbar-inverse navbar-fixed-bottom">
+		<footer class="page-footer">
+			<section class="section section--legal">
+				<div class="container">
+					<div class="section__inner">
+						<div class="page-legal">
+							<div class="row">
+								<div class="page-legal__links col-xs-12">
+									<div class="region region-footer">
+										<nav role="navigation" aria-labelledby="block-bk-footer-navigation-menu" id="block-bk-footer-navigation">
+											<ul>
+												<li>
+													<a href="/Scheduler/Contact">Contact</a>
+												</li>
+												<li>
+													<a href="https://ecdc.europa.eu/en/legal-notice" target="_blank">
+														Legal notice
+														<i class="fa fa-external-link" aria-hidden="true"></i>
+													</a>
+												</li>
+												<li>
+													<a href="https://ecdc.europa.eu/en/copyright" target="_blank">
+														Copyright
+														<i class="fa fa-external-link" aria-hidden="true"></i>
+													</a>
+												</li>
+												<li>
+													<a href="https://ecdc.europa.eu/en/cookie-policy" target="_blank">
+														Cookie policy
+														<i class="fa fa-external-link" aria-hidden="true"></i>
+													</a>
+												</li>
+												<li>
+													<a href="https://ecdc.europa.eu/en/accessibility" target="_blank">
+														Accessibility
+														<i class="fa fa-external-link" aria-hidden="true"></i>
+													</a>
+												</li>
+											</ul>
+										</nav>
+									</div>
+									<br>
+									<span class="page-legal__copyright">
+										© European Centre for Disease Prevention and Control (ECDC) 2021
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</footer>
+	</div>
+
+	<script src="/Scripts/jquery-3.1.1.js"></script>
+
+	<script src="/Scripts/bootstrap.js"></script>
+<script src="/Scripts/respond.js"></script>
+
+	
+	<script src="/Scripts/jquery.validate.js"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+
+</body></html>
