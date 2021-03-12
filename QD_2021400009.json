@@ -1,12 +1,12 @@
 {
     "query1": {
         "queryNum": 1,
-        "query": "international students return to china when",
-        "description": "I want to know about news regarding the travel ban for students to China"
+        "query": "best lasagna recipe how to make",
+        "description": "I want to make delicios lasagna"
     },
     "query2": {
         "queryNum": 2,
-        "query": "germany vaccination schedule",
+        "query": "germany vaccination progress",
         "description": "I want to know when I am able to get vaccinated"
     }
 }

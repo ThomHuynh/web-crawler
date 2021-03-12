@@ -1,17 +1,18 @@
 const puppeteer = require("puppeteer");
 const json = require("./QD_2021400009.json");
+const fs = require("fs");
 
 async function crawlBing(query) {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   await page.setViewport({ width: 1440, height: 900 });
-  await page.goto("https://www.bing.com/", { waitUntil: "networkidle2" });
+  await page.goto("https://www.bing.com/", { waitUntil: "domcontentloaded" });
 
   // accept cookie policy
   const elements = await page.$x('//*[@id="bnp_btn_accept"]');
   await elements[0].click();
 
-  // search
+  // search using query
   await page.waitForXPath('//*[@id="sb_form_q"]');
   await page.$eval(
     "input[id=sb_form_q]",
@@ -57,7 +58,6 @@ async function crawlBing(query) {
   });
 
   //write results to file
-  var fs = require("fs");
   const jsonString = JSON.stringify(results);
   fs.writeFile(
     `./SE_BING_${query.queryNum}_2021400009.json`,
@@ -71,10 +71,24 @@ async function crawlBing(query) {
   );
 
   //write target pages to file
-  for (i = 0; i < results.length; i++) {
-    targetPage = results[i];
-    await page.goto(`${targetPage.url}`, { waitUntil: "networkidle2" });
-    html = await page.content();
+  for (let i = 0; i < results.length; i++) {
+    const targetPage = results[i];
+
+    async function getHTML(retryCount) {
+      try {
+        await page.goto(`${targetPage.url}`, { waitUntil: "domcontentloaded" });
+        return await page.content();
+      } catch (error) {
+        if (retryCount <= 0) {
+          throw error;
+        }
+        console.log(`Retry loading: ${targetPage.url}`);
+        page.waitForTimeout(1000);
+        return await getHTML(retryCount - 1);
+      }
+    }
+
+    const html = await getHTML(3);
 
     fs.writeFile(
       `./targetPages/TP_BING_${query.queryNum}_${targetPage.rank}_2021400009.html`,
@@ -85,6 +99,7 @@ async function crawlBing(query) {
         }
       }
     );
+    console.log(`Bing Q${query.queryNum}: pageRank:${targetPage.rank}`);
   }
 
   await browser.close();
@@ -138,7 +153,6 @@ async function baiduCrawler(query) {
   });
 
   //write results to file
-  var fs = require("fs");
   const jsonString = JSON.stringify(results);
   fs.writeFile(
     `./SE_BAIDU_${query.queryNum}_2021400009.json`,
@@ -153,9 +167,23 @@ async function baiduCrawler(query) {
 
   // write target pages to files
   for (let i = 0; i < results.length; i++) {
-    targetPage = results[i];
-    await page.goto(`${targetPage.url}`, { waitUntil: "networkidle2" });
-    html = await page.content();
+    const targetPage = results[i];
+
+    async function getHTML(retryCount) {
+      try {
+        await page.goto(`${targetPage.url}`, { waitUntil: "domcontentloaded" });
+        return await page.content();
+      } catch (error) {
+        if (retryCount <= 0) {
+          throw error;
+        }
+        console.log(`Retry loading: ${targetPage.url}`);
+        page.waitForTimeout(1000);
+        return await getHTML(retryCount - 1);
+      }
+    }
+
+    const html = await getHTML(3);
 
     fs.writeFile(
       `./targetPages/TP_BAIDU_${query.queryNum}_${targetPage.rank}_2021400009.html`,
@@ -167,6 +195,7 @@ async function baiduCrawler(query) {
         }
       }
     );
+    console.log(`Baidu Q${query.queryNum}: pageRank:${targetPage.rank}`);
   }
   await browser.close();
 }
